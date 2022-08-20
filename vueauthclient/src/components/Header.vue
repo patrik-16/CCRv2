@@ -8,7 +8,7 @@ export default {
   <header>
     <div class="px-3 py-2 bg-dark text-white">
       <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="d-flex flex-wrap align-items-center justify-content-lg-start">
           <a href="/"
              class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
             <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
@@ -18,41 +18,33 @@ export default {
 
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
             <li>
-              <a href="#" class="nav-link text-secondary">
+              <a href="/" class="nav-link text-secondary text-center">
                 <i class="bi bi-house display-6"></i>
                 <p>Home</p>
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#speedometer2"/>
-                </svg>
-                Dashboard
+              <a href="/dashboard" class="nav-link text-secondary text-center">
+                <i class="bi bi-speedometer2 display-6"></i>
+                <p>Dashboard</p>
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#arrow"/>
-                </svg>
-                Converter
+              <a href="/" class="nav-link text-secondary text-center">
+                <i class="bi bi-arrow-left-right display-6"></i>
+                <p>Converter</p>
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#question-mark"/>
-                </svg>
-                FAQ
+              <a href="/faq" class="nav-link text-secondary text-center">
+                <i class="bi bi-question-square display-6"></i>
+                <p>FAQ</p>
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#people-circle"/>
-                </svg>
-                Account
+              <a href="/account" class="nav-link text-secondary text-center">
+                <i class="bi bi-person-circle display-6"></i>
+                <p>Account</p>
               </a>
             </li>
           </ul>
@@ -60,14 +52,13 @@ export default {
       </div>
     </div>
     <div class="px-3 py-2 border-bottom mb-3">
-      <div class="container d-flex flex-wrap justify-content-center">
-        <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-        </form>
+      <div class="container d-flex flex-wrap">
+<!--        <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">-->
+<!--          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">-->
+<!--        </form>-->
 
         <div class="text-end">
-          <button type="button" class="btn btn-light text-dark me-2">Login</button>
-          <button type="button" class="btn btn-primary">Sign-up</button>
+          <a href="/login" class="btn btn-light text-dark me-2">Login</a>
         </div>
       </div>
     </div>
@@ -83,14 +74,14 @@ h1 {
 h3 {
   font-size: 1.2rem;
 }
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
-}
+/*.greetings h1,*/
+/*.greetings h3 {*/
+/*  text-align: center;*/
+/*}*/
+/*@media (min-width: 1024px) {*/
+/*  .greetings h1,*/
+/*  .greetings h3 {*/
+/*    text-align: left;*/
+/*  }*/
+/*}*/
 </style>

@@ -1,18 +1,37 @@
 <template>
-  <div>
-    <h2>Converter</h2>
-    <form v-on:submit="convert">
-      <input type="text" name="asset_id_base"/><br>
-      <input type="text" name="asset_id_quote"/><br>
-      <input type="submit" value="convert"/>
-    </form>
-    {{ response_data.data.rate }}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Converter</h2>
+        <form v-on:submit="convert">
+          <label for="asset_id_base" class="form-label">Convert from:</label>
+          <select id="asset_id_base" class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option v-for="value in response_all_assets.data_all"
+                    :value="value.asset_id">{{ value.asset_id }} - {{ value.name }}
+            </option>
+          </select>
+
+          <label for="asset_id_quote" class="form-label mt-3">Convert to:</label>
+          <select id="asset_id_quote" class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option v-for="value in response_all_assets.data_all"
+                    :value="value.asset_id">{{ value.asset_id }} - {{ value.name }}
+            </option>
+          </select>
+
+          <input type="submit" value="convert"/>
+        </form>
+        {{ response_data.data.rate }}
+      </div>
+    </div>
   </div>
 </template>
 
 
 <script>
-import axios from "axios"
+import axios from "axios";
+import myJson from '../assets/allAssets.json';
 
 export default {
   name: "Converter",
@@ -22,7 +41,11 @@ export default {
       response_data: {
         data: []
       },
-      token: '2DC86A86-5F6D-469A-B861-7F67F6CBF48D'
+      response_all_assets: {
+        data_all: []
+      },
+      token: '2DC86A86-5F6D-469A-B861-7F67F6CBF48D',
+      token2: 'DFED3223-7BB6-4501-B1FB-62CB2D5DA8DD'
     }
   },
   methods: {
@@ -40,13 +63,11 @@ export default {
 
       axios.get(url, {
         headers: {
-          'X-CoinAPI-Key': this.token
+          'X-CoinAPI-Key': this.token2
         }
       })
         .then((res) => {
-          console.log(res.data)
           this.response_data.data = res.data
-
         })
         .catch((error) => {
           console.error(error)
@@ -55,9 +76,9 @@ export default {
 
 
     getAllAssets() {
-      const url = "https://rest.coinapi.io/v1/assets"
+      this.response_all_assets.data_all = myJson
+    },
 
-    }
   },
   mounted() {
     this.getAllAssets()
