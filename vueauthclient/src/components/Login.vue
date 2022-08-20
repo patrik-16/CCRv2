@@ -1,17 +1,21 @@
 <template>
-  <div>
-    <h2>Login</h2>
-    <form v-on:submit="login">
-      <input type="text" name="email" /><br>
-      <input type="password" name="password" /><br>
-      <input type="submit" value="Login" />
-    </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Login</h2>
+        <form v-on:submit="login">
+          <input type="text" name="email" /><br>
+          <input type="password" name="password" /><br>
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 
 <script>
-import router from "../router"
+import router from "../router/pages"
 import axios from "axios"
 export default {
   name: "Login",

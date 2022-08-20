@@ -1,18 +1,24 @@
 <template>
-  <div>
-    <h2>Dashboard</h2>
-    <p>Name: {{ user.name }}</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Dashboard</h2>
+        <p>Name: {{ user.name }}</p>
+      </div>
+    </div>
   </div>
 </template>
+
 <script>
 import axios from "axios"
-import router from "../router"
+import router from "../router/pages"
 export default {
   name: "Login",
   data() {
     return {
       user: {
-        name: 'Jesse'
+        name: '',
+        email: ''
   }
   }
   },

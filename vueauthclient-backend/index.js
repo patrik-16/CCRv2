@@ -1,4 +1,5 @@
 const express = require('express')
+const crypto = require('crypto')
 
 // creating an express instance
 const app = express()
@@ -10,13 +11,13 @@ const passport = require('passport')
 // getting the local authentication type
 const LocalStrategy = require('passport-local').Strategy
 
-const publicRoot = '/Users/laminsanneh/Sites/jscrambler/vueauth-final/vueauthclient/dist'
+const publicRoot = '/'
 app.use(express.static(publicRoot))
 
 app.use(bodyParser.json())
 app.use(cookieSession({
-    name: 'mysession',
-    keys: ['vueauthrandomkey'],
+    name: 'ccrsession',
+    keys: [crypto.randomBytes(16).toString('base64')],
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))
 
@@ -113,5 +114,5 @@ passport.deserializeUser((id, done) => {
 })
 
 app.listen(3000, () => {
-    console.log("Example app listening on port 3000")
+    console.log("CCR listening on port 3000")
 })
