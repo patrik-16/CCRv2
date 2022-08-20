@@ -4,22 +4,27 @@
       <div class="col-md-6">
         <h2>Converter</h2>
         <form v-on:submit="convert">
-          <label for="asset_id_base" class="form-label">Convert from:</label>
-          <select id="asset_id_base" class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option v-for="value in response_all_assets.data_all"
-                    :value="value.asset_id">{{ value.asset_id }} - {{ value.name }}
-            </option>
-          </select>
+          <div class="form-floating">
+            <!--          <label for="asset_id_base" class="form-label">Convert from:</label>-->
+            <select id="asset_id_base" class="form-select" aria-label="Default select example">
+              <option selected>---</option>
+              <option v-for="value in response_all_assets.data_all"
+                      :value="value.asset_id">{{ value.asset_id }} - {{ value.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Convert from:</label>
+          </div>
 
-          <label for="asset_id_quote" class="form-label mt-3">Convert to:</label>
-          <select id="asset_id_quote" class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option v-for="value in response_all_assets.data_all"
-                    :value="value.asset_id">{{ value.asset_id }} - {{ value.name }}
-            </option>
-          </select>
-
+          <div class="form-floating">
+            <!--          <label for="asset_id_quote" class="form-label mt-3">Convert to:</label>-->
+            <select id="asset_id_quote" class="form-select" aria-label="Default select example">
+              <option selected>---</option>
+              <option v-for="value in response_all_assets.data_all"
+                      :value="value.asset_id">{{ value.asset_id }} - {{ value.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Convert to:</label>
+          </div>
           <input type="submit" value="convert"/>
         </form>
         {{ response_data.data.rate }}

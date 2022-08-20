@@ -30,7 +30,7 @@ export default {
               </a>
             </li>
             <li>
-              <a href="/" class="nav-link text-secondary text-center">
+              <a href="/converter" class="nav-link text-secondary text-center">
                 <i class="bi bi-arrow-left-right display-6"></i>
                 <p>Converter</p>
               </a>

@@ -5,6 +5,7 @@ import Dashboard from "../components/Dashboard"
 import Converter from "../components/Converter";
 import Account from "../components/Account";
 import FAQ from "../components/FAQ";
+import Home from "../components/Home"
 
 Vue.use(Router)
 export default new Router({
@@ -21,7 +22,7 @@ export default new Router({
       component: Dashboard
     },
     {
-      path: "/",
+      path: "/converter",
       name: "Converter",
       component: Converter
     },
@@ -34,6 +35,11 @@ export default new Router({
       path: '/faq',
       name: 'FAQ',
       component: FAQ
+    },
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
     }
   ]
 })
