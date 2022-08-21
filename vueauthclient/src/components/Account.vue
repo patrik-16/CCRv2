@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       user: {
-        name: 'Jesse'
+        name: ''
       }
     }
   },
@@ -34,7 +34,7 @@ export default {
         })
         .catch((errors) => {
           console.log(errors)
-          router.push("/")
+          router.push("/login")
         })
     }
   },

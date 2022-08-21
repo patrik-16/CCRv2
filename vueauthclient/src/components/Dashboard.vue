@@ -13,7 +13,7 @@
 import axios from "axios"
 import router from "../router/pages"
 export default {
-  name: "Login",
+  name: "Dahsboard",
   data() {
     return {
       user: {
@@ -32,7 +32,7 @@ export default {
         })
         .catch((errors) => {
           console.log(errors)
-          router.push("/")
+          router.push("/login")
         })
     }
   },
