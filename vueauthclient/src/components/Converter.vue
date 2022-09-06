@@ -5,7 +5,7 @@
         <h2>Converter</h2>
         <form v-on:submit="convert">
           <div class="form-floating">
-            <!--          <label for="asset_id_base" class="form-label">Convert from:</label>-->
+
             <select id="asset_id_base" class="form-select" aria-label="Default select example">
               <option selected>---</option>
               <option v-for="value in response_all_assets.data_all"
@@ -16,7 +16,6 @@
           </div>
 
           <div class="form-floating">
-            <!--          <label for="asset_id_quote" class="form-label mt-3">Convert to:</label>-->
             <select id="asset_id_quote" class="form-select" aria-label="Default select example">
               <option selected>---</option>
               <option v-for="value in response_all_assets.data_all"
@@ -35,8 +34,11 @@
 
 
 <script>
-import axios from "axios";
+
+
 import myJson from '../assets/allAssets.json';
+import axios from "axios";
+import router from "../router/pages";
 
 export default {
   name: "Converter",
@@ -50,7 +52,9 @@ export default {
         data_all: []
       },
       token: '2DC86A86-5F6D-469A-B861-7F67F6CBF48D',
-      token2: 'DFED3223-7BB6-4501-B1FB-62CB2D5DA8DD'
+      token2: 'DFED3223-7BB6-4501-B1FB-62CB2D5DA8DD',
+
+      selected: {asset_id: null, name: null}
     }
   },
   methods: {
@@ -64,25 +68,31 @@ export default {
       let asset_id_base = e.target.elements.asset_id_base.value
       let asset_id_quote = e.target.elements.asset_id_quote.value
 
-      const url = "https://rest.coinapi.io/v1/exchangerate/" + asset_id_base + "/" + asset_id_quote
+      const params = new URLSearchParams([
+        ['asset_id_base', asset_id_base],
+        ['asset_id_quote', asset_id_quote],
+        ['token', this.token],
+        ['token2', this.token2]
+      ]);
 
-      axios.get(url, {
-        headers: {
-          'X-CoinAPI-Key': this.token2
-        }
+      axios.get('/api/convert', {params}).then((response) => {
+        this.response_data.data = response.data
       })
-        .then((res) => {
-          this.response_data.data = res.data
-        })
-        .catch((error) => {
-          console.error(error)
-        })
     },
 
 
     getAllAssets() {
       this.response_all_assets.data_all = myJson
     },
+
+    validateSelection(selection) {
+      this.selected = selection;
+      console.log(selection.asset_id + " has been selected");
+    },
+
+    getDropdownValues(keyword) {
+      console.log("You could refresh options by querying the API with " + keyword);
+    }
 
   },
   mounted() {
