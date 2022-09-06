@@ -1,5 +1,7 @@
+const axios = require('axios')
 const express = require('express')
 const crypto = require('crypto')
+const fs = require('fs')
 
 // creating an express instance
 const app = express()
@@ -24,23 +26,10 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-let users = [
-    {
-        id: 1,
-        name: "Jude",
-        email: "user@email.com",
-        password: "password"
-    },
-    {
-        id: 2,
-        name: "Emma",
-        email: "emma@email.com",
-        password: "password2"
-    },
-]
+let users = require("./users.json");
 
 app.get("/", (req, res, next) => {
-    res.sendFile("index.html", { root: publicRoot })
+    res.sendFile("index.html", {root: publicRoot})
 })
 
 app.post("/api/login", (req, res, next) => {
@@ -60,12 +49,10 @@ app.post("/api/login", (req, res, next) => {
 })
 
 
-
-
-app.get('/api/logout', function(req, res){
+app.get('/api/logout', function (req, res, next) {
     req.logout();
     console.log("logged out")
-    return res.send();
+    res.redirect("/login")
 });
 
 const authMiddleware = (req, res, next) => {
@@ -80,9 +67,77 @@ app.get("/api/user", authMiddleware, (req, res) => {
     let user = users.find((user) => {
         return user.id === req.session.passport.user
     })
-    console.log([user, req.session])
+    // console.log([user, req.session])
     res.send({user: user})
 })
+
+
+/**
+ * authMiddleware = you can only do this, if you are logged in
+ */
+app.put('/api/update-user/:id', authMiddleware, (req, res) => {
+    console.log(req.body.id)
+    fs.readFile('./users.json', 'utf8', (err, jsonString) => {
+        if (err) {
+            console.log("File read failed:", err)
+            return
+        }
+        let users = JSON.parse(jsonString)
+        let user = users.find((users => users.id === req.body.id))
+        user.firstName = req.body.firstName
+        user.lastName = req.body.lastName
+        user.email = req.body.email
+        user.password = req.body.password
+        // console.log('File data:', jsonString)
+        const userString = JSON.stringify(users)
+        fs.writeFile('./users.json', userString, err => {
+            if (err) {
+                res.send('Error writing file')
+            } else {
+                res.send('Successfully updated user data')
+            }
+        })
+    })
+})
+
+app.delete('/api/delete-user/:id', authMiddleware, (req, res) => {
+    console.log(req.params)
+    fs.readFile('./users.json', 'utf8', (err, jsonString) => {
+        if (err) {
+            console.log("File read failed:", err)
+            return
+        }
+        let users = JSON.parse(jsonString)
+        let user = users.find((users => users.id === req.params.id))
+        console.log(users[user])
+        console.log(user)
+        // delete users[user]
+        const userString = JSON.stringify(users)
+        fs.writeFile('./users.json', userString, err => {
+            if (err) {
+                res.send('Error writing file')
+            } else {
+                res.send('Successfully updated user data')
+            }
+        })
+    })
+})
+
+app.get("/api/convert", async (req, res,) => {
+    console.log(req.query)
+    const url = "https://rest.coinapi.io/v1/exchangerate/" + req.query.asset_id_base + "/" + req.query.asset_id_quote
+    let data = await axios.get(url, {
+        headers: {
+            'X-CoinAPI-Key': req.query.token2
+        }
+    })
+        .catch((error) => {
+            console.error(error)
+        })
+    res.send(data.data)
+    console.log(data)
+})
+
 
 passport.use(new LocalStrategy({
         usernameField: 'email',

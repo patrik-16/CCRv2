@@ -6,30 +6,16 @@
         <form v-on:submit="convert">
           <div class="form-floating">
 
-<!--            <select id="asset_id_base" class="form-select" aria-label="Default select example">-->
-<!--              <option selected>-&#45;&#45;</option>-->
-<!--              <option v-for="value in response_all_assets.data_all"-->
-<!--                      :value="value.asset_id">{{ value.asset_id }} - {{ value.name }}-->
-<!--              </option>-->
-<!--            </select>-->
-
-            <div id="app2">
-              <div class="container mx-auto p-8">
-
-                <Dropdown
-                  :options="response_all_assets.data_all"
-                  v-on:selected="validateSelection()"
-                  v-on:filter="getDropdownValues(selected.asset_id)"
-                  :disabled="false"
-                  placeholder="Please select an animal">
-                </Dropdown>
-              </div>
-            </div>
-<!--            <label for="floatingSelect">Convert from:</label>-->
+            <select id="asset_id_base" class="form-select" aria-label="Default select example">
+              <option selected>---</option>
+              <option v-for="value in response_all_assets.data_all"
+                      :value="value.asset_id">{{ value.asset_id }} - {{ value.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Convert from:</label>
           </div>
 
           <div class="form-floating">
-            <!--          <label for="asset_id_quote" class="form-label mt-3">Convert to:</label>-->
             <select id="asset_id_quote" class="form-select" aria-label="Default select example">
               <option selected>---</option>
               <option v-for="value in response_all_assets.data_all"
@@ -48,9 +34,11 @@
 
 
 <script>
-import axios from "axios";
-import Dropdown from "./Dropdown";
+
+
 import myJson from '../assets/allAssets.json';
+import axios from "axios";
+import router from "../router/pages";
 
 export default {
   name: "Converter",
@@ -66,7 +54,7 @@ export default {
       token: '2DC86A86-5F6D-469A-B861-7F67F6CBF48D',
       token2: 'DFED3223-7BB6-4501-B1FB-62CB2D5DA8DD',
 
-      selected: { asset_id: null, name: null }
+      selected: {asset_id: null, name: null}
     }
   },
   methods: {
@@ -80,19 +68,16 @@ export default {
       let asset_id_base = e.target.elements.asset_id_base.value
       let asset_id_quote = e.target.elements.asset_id_quote.value
 
-      const url = "https://rest.coinapi.io/v1/exchangerate/" + asset_id_base + "/" + asset_id_quote
+      const params = new URLSearchParams([
+        ['asset_id_base', asset_id_base],
+        ['asset_id_quote', asset_id_quote],
+        ['token', this.token],
+        ['token2', this.token2]
+      ]);
 
-      axios.get(url, {
-        headers: {
-          'X-CoinAPI-Key': this.token2
-        }
+      axios.get('/api/convert', {params}).then((response) => {
+        this.response_data.data = response.data
       })
-        .then((res) => {
-          this.response_data.data = res.data
-        })
-        .catch((error) => {
-          console.error(error)
-        })
     },
 
 

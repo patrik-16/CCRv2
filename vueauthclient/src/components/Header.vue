@@ -51,7 +51,8 @@ export default {
 <!--        </form>-->
 
         <div class="text-end">
-          <a href="/login" class="btn btn-light text-dark me-2">Login</a>
+          <a href="/login" class="btn btn-secondary me-2">Login</a>
+          <a href="/api/logout" class="btn btn-secondary me-2">Logout</a>
         </div>
       </div>
     </div>
@@ -67,14 +68,5 @@ h1 {
 h3 {
   font-size: 1.2rem;
 }
-/*.greetings h1,*/
-/*.greetings h3 {*/
-/*  text-align: center;*/
-/*}*/
-/*@media (min-width: 1024px) {*/
-/*  .greetings h1,*/
-/*  .greetings h3 {*/
-/*    text-align: left;*/
-/*  }*/
-/*}*/
+
 </style>
