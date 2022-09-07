@@ -4,8 +4,7 @@
       <div class="col-md-6">
         <h2>Converter</h2>
         <form v-on:submit="convert">
-          <div class="form-floating">
-
+          <div class="my-3 form-floating">
             <select id="asset_id_base" class="form-select" aria-label="Default select example">
               <option selected>---</option>
               <option v-for="value in response_all_assets.data_all"
@@ -14,8 +13,7 @@
             </select>
             <label for="floatingSelect">Convert from:</label>
           </div>
-
-          <div class="form-floating">
+          <div class="my-3 form-floating">
             <select id="asset_id_quote" class="form-select" aria-label="Default select example">
               <option selected>---</option>
               <option v-for="value in response_all_assets.data_all"
@@ -24,9 +22,33 @@
             </select>
             <label for="floatingSelect">Convert to:</label>
           </div>
-          <input type="submit" value="convert"/>
+          <div class="text-center">
+            <button class="btn btn-secondary" type="submit">Convert</button>
+          </div>
         </form>
-        {{ response_data.data.rate }}
+        <h2 class="my-3 text-center"> {{ reformat(parseFloat(response_data.data.rate)) }}
+          {{ response_data.data.asset_id_quote }}</h2>
+        <h2 v-if="isError !== false">{{isError}}</h2>
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Time</th>
+            <th scope="col">From</th>
+            <th scope="col">Rate</th>
+            <th scope="col">To</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="history in history_data.data">
+            <th>{{ reformat(history.time, true) }}</th>
+            <td>{{ history.asset_id_base }}</td>
+            <td>{{ reformat(parseFloat(history.rate)) }}</td>
+            <td>{{ history.asset_id_quote }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -45,6 +67,10 @@ export default {
 
   data() {
     return {
+      isError: false,
+      history_data: {
+        data: []
+      },
       response_data: {
         data: []
       },
@@ -76,24 +102,25 @@ export default {
       ]);
 
       axios.get('/api/convert', {params}).then((response) => {
-        this.response_data.data = response.data
+        console.log(response)
+          this.response_data.data = response.data
+          this.history_data.data.push(response.data)
       })
     },
-
-
+    reformat(input, time = false) {
+      if (time) {
+        return new Date(input).toISOString().slice(8, 10) + "-" + new Date(input).toISOString().slice(5, 7) + "-" + new Date(input).toISOString().slice(0, 4) + " " + new Date(input).toISOString().slice(11, 19)
+      } else {
+        if (input < 1) {
+          return (Math.round(input * 1000000) / 1000000).toFixed(6);
+        } else {
+          return (Math.round(input * 100) / 100).toFixed(2);
+        }
+      }
+    },
     getAllAssets() {
       this.response_all_assets.data_all = myJson
     },
-
-    validateSelection(selection) {
-      this.selected = selection;
-      console.log(selection.asset_id + " has been selected");
-    },
-
-    getDropdownValues(keyword) {
-      console.log("You could refresh options by querying the API with " + keyword);
-    }
-
   },
   mounted() {
     this.getAllAssets()

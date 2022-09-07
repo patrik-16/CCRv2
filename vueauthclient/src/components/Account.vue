@@ -51,7 +51,7 @@ export default {
         lastName: '',
         email: '',
         password: '',
-        id: ''
+        userId: ''
       }
     }
   },
@@ -79,7 +79,7 @@ export default {
         lastName: this.user.lastName,
         email: this.user.email,
         password: this.user.password,
-        id: this.user.id
+        userId: this.user.userId
       }, config);
       alert("Data updated!")
     },
@@ -90,9 +90,9 @@ export default {
           'Content-Type': 'application/json'
         }
       };
-      axios.delete("/api/delete-user/1", config).then((response) => {
+      axios.delete("/api/delete-user/" + this.user.userId, config).then((response) => {
         // console.log(response)
-        // router.push("/api/logout")
+        location.href = "/api/logout"
       })
     }
   },

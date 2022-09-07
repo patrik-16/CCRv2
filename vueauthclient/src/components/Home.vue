@@ -16,8 +16,12 @@
           <div class="container text-center">
             <img src="../assets/logo.png" class="img-fluid" alt=''>
             <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Some representative placeholder content for the first slide of the carousel.</p>
+              <h1>1 Lorem ipsum</h1>
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                labore
+                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+                rebum.
+                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
               <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
             </div>
           </div>
@@ -26,8 +30,12 @@
           <div class="container text-center">
             <img src="../assets/logo.png" class="img-fluid" alt=''>
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Some representative placeholder content for the second slide of the carousel.</p>
+              <h1>2 Lorem ipsum</h1>
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                labore
+                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+                rebum.
+                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
               <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
             </div>
           </div>
@@ -36,8 +44,12 @@
           <div class="container text-center">
             <img src="../assets/logo.png" class="img-fluid" alt=''>
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Some representative placeholder content for the third slide of this carousel.</p>
+              <h1>3 Lorem ipsum</h1>
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                labore
+                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+                rebum.
+                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
               <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
             </div>
           </div>

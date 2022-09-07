@@ -27,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 let users = require("./users.json");
+const {response} = require("express");
 
 app.get("/", (req, res, next) => {
     res.sendFile("index.html", {root: publicRoot})
@@ -51,7 +52,6 @@ app.post("/api/login", (req, res, next) => {
 
 app.get('/api/logout', function (req, res, next) {
     req.logout();
-    console.log("logged out")
     res.redirect("/login")
 });
 
@@ -65,7 +65,7 @@ const authMiddleware = (req, res, next) => {
 
 app.get("/api/user", authMiddleware, (req, res) => {
     let user = users.find((user) => {
-        return user.id === req.session.passport.user
+        return user.userId === req.session.passport.user
     })
     // console.log([user, req.session])
     res.send({user: user})
@@ -83,7 +83,7 @@ app.put('/api/update-user/:id', authMiddleware, (req, res) => {
             return
         }
         let users = JSON.parse(jsonString)
-        let user = users.find((users => users.id === req.body.id))
+        let user = users.find((users => users.userId === req.body.id))
         user.firstName = req.body.firstName
         user.lastName = req.body.lastName
         user.email = req.body.email
@@ -108,10 +108,21 @@ app.delete('/api/delete-user/:id', authMiddleware, (req, res) => {
             return
         }
         let users = JSON.parse(jsonString)
-        let user = users.find((users => users.id === req.params.id))
-        console.log(users[user])
-        console.log(user)
-        // delete users[user]
+        console.log(users)
+        console.log(req.params.id)
+
+        const removeById = (arr, id) => {
+            const requiredIndex = arr.findIndex(el => {
+                return el.userId === String(id);
+            });
+            if (requiredIndex === -1) {
+                return false;
+            }
+            return !!arr.splice(requiredIndex, 1);
+        };
+        removeById(users, req.params.id);
+        console.log(users);
+
         const userString = JSON.stringify(users)
         fs.writeFile('./users.json', userString, err => {
             if (err) {
@@ -128,16 +139,26 @@ app.get("/api/convert", async (req, res,) => {
     const url = "https://rest.coinapi.io/v1/exchangerate/" + req.query.asset_id_base + "/" + req.query.asset_id_quote
     let data = await axios.get(url, {
         headers: {
-            'X-CoinAPI-Key': req.query.token2
+            'X-CoinAPI-Key': req.query.token
         }
     })
         .catch((error) => {
             console.error(error)
+            res.send(error)
         })
     res.send(data.data)
     console.log(data)
 })
 
+app.get("/api/check-login", (req, res) => {
+    if (req.user) {
+        res.send(true)
+    } else {
+        res.send(false)
+    }
+
+
+})
 
 passport.use(new LocalStrategy({
         usernameField: 'email',
@@ -157,12 +178,12 @@ passport.use(new LocalStrategy({
 ))
 
 passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user.userId)
 })
 
 passport.deserializeUser((id, done) => {
     let user = users.find((user) => {
-        return user.id === id
+        return user.userId === id
     })
 
     done(null, user)

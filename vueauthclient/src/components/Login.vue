@@ -17,6 +17,7 @@
 <script>
 import router from "../router/pages"
 import axios from "axios"
+import app from "../App";
 export default {
   name: "Login",
   methods: {
@@ -34,13 +35,14 @@ export default {
         axios.post("/api/login", data)
           .then((response) => {
             console.log("Logged in")
-            router.push("/dashboard")
+            location.href = "/"
           })
           .catch((errors) => {
             console.log("Cannot log in")
           })
       }
       login()
+      app.data().loggedIn = true
     }
   }
 }
