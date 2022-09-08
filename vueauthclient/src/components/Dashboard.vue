@@ -13,7 +13,7 @@
 import axios from 'axios'
 import router from '../router/pages'
 export default {
-  name: 'Dahsboard',
+  name: 'Dashboard',
   data() {
     return {
       user: {

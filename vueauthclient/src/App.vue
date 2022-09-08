@@ -1,6 +1,8 @@
+<!--  the "frame" of our website  -->
 <template>
   <div>
     <header>
+<!--  nav bar  -->
       <div class='px-3 py-2 bg-dark text-white'>
         <div class='container'>
           <div class='d-flex flex-wrap align-items-center justify-content-lg-start'>
@@ -39,6 +41,7 @@
           </div>
         </div>
       </div>
+<!-- login and logout buttons -->
       <div class='px-3 py-2 border-bottom mb-3'>
         <div class='container d-flex flex-wrap'>
           <div class='text-end'>
@@ -48,7 +51,27 @@
         </div>
       </div>
     </header>
+<!-- loads component depending on route -->
     <router-view/>
+
+    <div class="container" style="margin-top: 250px">
+<!--  footer -->
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
+
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <img width="50px" src="./assets/CCR.png" alt="CCR">
+        </a>
+<!-- footer navigation links -->
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+          <li class="nav-item"><a href="/dashboard" class="nav-link px-2 text-muted">Dashboard</a></li>
+          <li class="nav-item"><a href="/converter" class="nav-link px-2 text-muted">Converter</a></li>
+          <li class="nav-item"><a href="/faq" class="nav-link px-2 text-muted">FAQ</a></li>
+          <li class="nav-item"><a href="/account" class="nav-link px-2 text-muted">Account</a></li>
+        </ul>
+      </footer>
+    </div>
   </div>
 </template>
 
@@ -63,6 +86,9 @@ export default {
     }
   },
   methods: {
+    /**
+    checks for login or logout button visibility
+     */
     isLoggedIn: function () {
       axios.get('/api/check-login')
         .then((response) => {
