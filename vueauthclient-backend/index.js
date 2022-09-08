@@ -3,7 +3,7 @@ const express = require('express')
 const crypto = require('crypto')
 const fs = require('fs')
 
-// creating an express instance
+// creating a node express instance
 const app = express()
 
 const cookieSession = require('cookie-session')
@@ -34,6 +34,7 @@ app.get("/", (req, res, next) => {
 })
 
 app.post("/api/login", (req, res, next) => {
+    //authentication of user, verifies who you are
     passport.authenticate('local', (err, user, info) => {
         if (err) {
             return next(err);
@@ -136,10 +137,12 @@ app.delete('/api/delete-user/:id', authMiddleware, (req, res) => {
 
 app.get("/api/convert", async (req, res,) => {
     console.log(req.query)
+    const token1 = '2DC86A86-5F6D-469A-B861-7F67F6CBF48D'
+    const token2 = 'DFED3223-7BB6-4501-B1FB-62CB2D5DA8DD'
     const url = "https://rest.coinapi.io/v1/exchangerate/" + req.query.asset_id_base + "/" + req.query.asset_id_quote
     let data = await axios.get(url, {
         headers: {
-            'X-CoinAPI-Key': req.query.token
+            'X-CoinAPI-Key': token1
         }
     })
         .catch((error) => {
