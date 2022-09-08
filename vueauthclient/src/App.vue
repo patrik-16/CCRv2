@@ -5,7 +5,7 @@
 <!--  nav bar  -->
       <div class='px-3 py-2 bg-dark text-white'>
         <div class='container'>
-          <div class='d-flex flex-wrap align-items-center justify-content-lg-start'>
+          <div class='d-flex flex-wrap align-items-center justify-content-lg-end'>
             <ul class='nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small'>
               <li>
                 <a href='/' class='nav-link text-secondary text-center'>
