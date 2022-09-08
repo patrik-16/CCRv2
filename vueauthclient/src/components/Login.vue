@@ -2,11 +2,17 @@
   <div class='container'>
     <div class='row'>
       <div class='col-md-6'>
-        <h2>Login</h2>
+        <h2 class="mb-3">Login</h2>
         <form v-on:submit="login">
-          <input type="text" name="email" placeholder="E-Mail"/><br>
-          <input type="password" name="password" placeholder="Password"/><br>
-          <input type="submit" value="Login"/>
+          <div class="form-floating mb-3">
+            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <button class="w-100 btn btn-lg btn-secondary" type="submit">Login</button>
         </form>
       </div>
     </div>
