@@ -2,42 +2,32 @@
   <div class='container'>
     <div class='row'>
       <div class='col-md-6'>
-        <h2>Dashboard</h2>
-        <p>Name: {{ user.firstName }}</p>
+        <h2 class="my-4">Dashboard</h2>
+        <h5 class="my-2">Frequently requested rates</h5>
+        <ul>
+          <li>BTC-Bitcoin</li>
+          <li>USD-US Dollar</li>
+          <li>GBP-British Pound Sterling</li>
+          <li>ETH-Etherium</li>
+          <li>DOGE-DOGE Coin</li>
+          <li>EUR-Euro</li>
+        </ul>
+        <h5 class="my-2">Frequently requested conversions</h5>
+        <ul>
+          <li>BTC <-> USD</li>
+          <li>BTC <-> ETH</li>
+          <li>BTC <-> EUR</li>
+          <li>ETH <-> USD</li>
+          <li>ETH <-> EUR</li>
+          <li>EUR <-> USD</li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import router from '../router/pages'
 export default {
   name: 'Dahsboard',
-  data() {
-    return {
-      user: {
-        name: '',
-        email: ''
-  }
-  }
-  },
-  methods: {
-    getUserData: function() {
-      let self = this
-      axios.get('/api/user')
-        .then((response) => {
-          console.log(response)
-          self.$set(this, 'user', response.data.user)
-        })
-        .catch((errors) => {
-          console.log(errors)
-          router.push('/login')
-        })
-    }
-  },
-  mounted() {
-    this.getUserData()
-  }
 }
 </script>
