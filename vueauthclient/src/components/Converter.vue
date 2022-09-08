@@ -27,11 +27,13 @@
             <button class='btn btn-secondary' type='submit'>Convert</button>
           </div>
         </form>
-        <h2 class='my-3 text-center'> {{ reformat(parseFloat(response_data.data.rate)) }}
+        <h2 class='my-3 text-center' v-if='reformat(parseFloat(response_data.data.rate)) === "NaN"'></h2>
+        <h2 class='my-3 text-center' v-else> {{ reformat(parseFloat(response_data.data.rate)) }}
           {{ response_data.data.asset_id_quote }}</h2>
         <h2 v-if='isError !== false'>{{isError}}</h2>
       </div>
       <div class='col-md-6'>
+        <h2>History</h2>
         <table class='table'>
           <thead>
           <tr>
@@ -57,14 +59,11 @@
 
 
 <script>
-
-
 import myJson from '../assets/allAssets.json';
 import axios from 'axios';
 
 export default {
   name: 'Converter',
-
   data() {
     return {
       isError: false,
