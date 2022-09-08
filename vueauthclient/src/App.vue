@@ -43,8 +43,8 @@
       </div>
 <!-- login and logout buttons -->
       <div class='px-3 py-2 border-bottom mb-3'>
-        <div class='container d-flex flex-wrap'>
-          <div class='text-end'>
+        <div class='container w-100'>
+          <div class="float-lg-end">
             <a v-if='loggedIn === false' href='/login' class='btn btn-secondary me-2'>Login</a>
             <a v-if='loggedIn === true' href='/api/logout' class='btn btn-secondary me-2'>Logout</a>
           </div>
