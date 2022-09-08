@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-6'>
         <h2>Login</h2>
-        <form v-on:submit="login">
-          <input type="text" name="email" /><br>
-          <input type="password" name="password" /><br>
-          <input type="submit" value="Login" />
+        <form v-on:submit='login'>
+          <input type='text' name='email' /><br>
+          <input type='password' name='password' /><br>
+          <input type='submit' value='Login' />
         </form>
       </div>
     </div>
@@ -15,11 +15,10 @@
 
 
 <script>
-import router from "../router/pages"
-import axios from "axios"
-import app from "../App";
+import axios from 'axios'
+import app from '../App';
 export default {
-  name: "Login",
+  name: 'Login',
   methods: {
     login: (e) => {
       e.preventDefault()
@@ -32,13 +31,13 @@ export default {
           email: email,
           password: password
         }
-        axios.post("/api/login", data)
+        axios.post('/api/login', data)
           .then((response) => {
-            console.log("Logged in")
+            console.log('Logged in')
             location.href = "/"
           })
           .catch((errors) => {
-            console.log("Cannot log in")
+            console.log('Cannot log in')
           })
       }
       login()
