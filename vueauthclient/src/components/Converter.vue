@@ -77,8 +77,6 @@ export default {
       response_all_assets: {
         data_all: []
       },
-      token: '2DC86A86-5F6D-469A-B861-7F67F6CBF48D',
-      token2: 'DFED3223-7BB6-4501-B1FB-62CB2D5DA8DD',
 
       selected: {asset_id: null, name: null}
     }
@@ -96,9 +94,7 @@ export default {
 
       const params = new URLSearchParams([
         ['asset_id_base', asset_id_base],
-        ['asset_id_quote', asset_id_quote],
-        ['token', this.token],
-        ['token2', this.token2]
+        ['asset_id_quote', asset_id_quote]
       ]);
 
       axios.get('/api/convert', {params}).then((response) => {
