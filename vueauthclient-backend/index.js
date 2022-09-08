@@ -38,17 +38,14 @@ app.post("/api/login", (req, res, next) => {
         if (err) {
             return next(err);
         }
-
         if (!user) {
             return res.status(400).send([user, "Cannot log in", info])
         }
-
         req.login(user, (err) => {
             res.send("Logged in")
         })
     })(req, res, next)
 })
-
 
 app.get('/api/logout', function (req, res, next) {
     req.logout();
@@ -156,8 +153,6 @@ app.get("/api/check-login", (req, res) => {
     } else {
         res.send(false)
     }
-
-
 })
 
 passport.use(new LocalStrategy({

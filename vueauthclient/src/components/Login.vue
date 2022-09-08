@@ -3,10 +3,10 @@
     <div class='row'>
       <div class='col-md-6'>
         <h2>Login</h2>
-        <form v-on:submit='login'>
-          <input type='text' name='email' /><br>
-          <input type='password' name='password' /><br>
-          <input type='submit' value='Login' />
+        <form v-on:submit="login">
+          <input type="text" name="email" placeholder="E-Mail"/><br>
+          <input type="password" name="password" placeholder="Password"/><br>
+          <input type="submit" value="Login"/>
         </form>
       </div>
     </div>

@@ -1,116 +1,55 @@
 <template>
   <main>
-    <div>
-      <p class='hooooome'>H O M E !</p>
-      <p class='home2'>welcome home</p>
-    </div>
-    <div id='myCarousel' class='carousel slide mb-5' data-bs-ride='carousel'>
-      <div class='carousel-indicators'>
-        <button type='button' data-bs-target='#myCarousel' data-bs-slide-to='0' class='active' aria-label='Slide 1'
-                aria-current='true'></button>
-        <button type='button' data-bs-target='#myCarousel' data-bs-slide-to='1' aria-label='Slide 2'></button>
-        <button type='button' data-bs-target='#myCarousel' data-bs-slide-to='2' aria-label='Slide 3'></button>
-      </div>
-      <div class='carousel-inner'>
-        <div class='carousel-item active'>
-          <div class='container text-center'>
-            <img src='../assets/logo.png' class='img-fluid' alt=''>
-            <div class='carousel-caption'>
-              <h1>1 Lorem ipsum</h1>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                labore
-                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-                rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-              <p><a class='btn btn-lg btn-primary' href='#'>Sign up today</a></p>
-            </div>
-          </div>
-        </div>
-        <div class='carousel-item'>
-          <div class='container text-center'>
-            <img src='../assets/logo.png' class='img-fluid' alt=''>
-            <div class='carousel-caption'>
-              <h1>2 Lorem ipsum</h1>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                labore
-                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-                rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-              <p><a class='btn btn-lg btn-primary' href='#'>Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class='carousel-item'>
-          <div class='container text-center'>
-            <img src='../assets/logo.png' class='img-fluid' alt=''>
-            <div class='carousel-caption'>
-              <h1>3 Lorem ipsum</h1>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                labore
-                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-                rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-              <p><a class='btn btn-lg btn-primary' href='#'>Browse gallery</a></p>
-            </div>
-          </div>
+    <div class="px-4 py-5 my-5 text-center">
+      <img class="d-block mx-auto mb-4 img-fluid" src="../assets/CCR.png" alt="CCR">
+      <h1 class="display-5 fw-bold">CryptoCoinRates</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
         </div>
       </div>
-      <button class='carousel-control-prev' type='button' data-bs-target='#myCarousel' data-bs-slide='prev'>
-        <span class='carousel-control-prev-icon' aria-hidden='true'></span>
-        <span class='visually-hidden'>Previous</span>
-      </button>
-      <button class='carousel-control-next' type='button' data-bs-target='#myCarousel' data-bs-slide='next'>
-        <span class='carousel-control-next-icon' aria-hidden='true'></span>
-        <span class='visually-hidden'>Next</span>
-      </button>
     </div>
 
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class='container marketing'>
-
+    <div class='container'>
       <!-- Three columns of text below the carousel -->
       <div class='row'>
         <div class='col-lg-4'>
-          <svg class='bd-placeholder-img rounded-circle' width='140' height='140' xmlns='http://www.w3.org/2000/svg'
-               role='img' aria-label='Placeholder: 140x140' preserveAspectRatio='xMidYMid slice' focusable='false'>
-            <title>Placeholder</title>
-            <rect width='100%' height='100%' fill='#777'></rect>
-            <text x='50%' y='50%' fill='#777' dy='.3em'>140x140</text>
-          </svg>
-
-          <h2>Heading</h2>
-          <p>Some representative placeholder content for the three columns of text below the carousel. This is the first
-            column.</p>
-          <p><a class='btn btn-secondary' href='#'>View details »</a></p>
+          <div class="card">
+            <img src="../assets/stock.jpg" class="card-img-top w-100" alt="Exchange Rates" style="min-height: 300px; max-height: 300px; object-fit: cover">
+            <div class="card-body">
+              <h5 class="card-title">Rates</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+            </div>
+          </div>
         </div><!-- /.col-lg-4 -->
-        <div class='col-lg-4'>
-          <svg class='bd-placeholder-img rounded-circle' width='140' height='140' xmlns='http://www.w3.org/2000/svg'
-               role='img' aria-label='Placeholder: 140x140' preserveAspectRatio='xMidYMid slice' focusable='false'>
-            <title>Placeholder</title>
-            <rect width='100%' height='100%' fill='#777'></rect>
-            <text x='50%' y='50%' fill='#777' dy='.3em'>140x140</text>
-          </svg>
 
-          <h2>Heading</h2>
-          <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second
-            column.</p>
-          <p><a class='btn btn-secondary' href='#'>View details »</a></p>
+        <div class='col-lg-4'>
+          <div class="card">
+            <img src="../assets/CoinAPI.jpg" class="card-img-top w-100" alt="Exchange Rates" style="min-height: 300px; max-height: 300px; object-fit: cover">
+            <div class="card-body">
+              <h5 class="card-title">CoinAPI.io</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="https://www.coinapi.io/" target="_blank" class="btn btn-primary">Visit CoinAPI.io</a>
+            </div>
+          </div>
         </div><!-- /.col-lg-4 -->
-        <div class='col-lg-4'>
-          <svg class='bd-placeholder-img rounded-circle' width='140' height='140' xmlns='http://www.w3.org/2000/svg'
-               role='img' aria-label='Placeholder: 140x140' preserveAspectRatio='xMidYMid slice' focusable='false'>
-            <title>Placeholder</title>
-            <rect width='100%' height='100%' fill='#777'></rect>
-            <text x='50%' y='50%' fill='#777' dy='.3em'>140x140</text>
-          </svg>
 
-          <h2>Heading</h2>
-          <p>And lastly this, the third column of representative placeholder content.</p>
-          <p><a class='btn btn-secondary' href='#'>View details »</a></p>
+        <div class='col-lg-4'>
+          <div class="card">
+            <img src="../assets/cash_in_cart.jpg" class="card-img-top w-100" alt="Exchange Rates" style="min-height: 300px; max-height: 300px; object-fit: cover">
+            <div class="card-body">
+              <h5 class="card-title">CoinAPI.io</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="https://www.coinapi.io/" target="_blank" class="btn btn-primary">Visit CoinAPI.io</a>
+            </div>
+          </div>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
