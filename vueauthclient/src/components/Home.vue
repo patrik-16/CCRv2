@@ -1,3 +1,4 @@
+<!-- Home Page -->
 <template>
   <main>
     <div class="px-4 py-5 my-5 text-center">
@@ -13,9 +14,8 @@
       </div>
     </div>
 
-
     <div class='container'>
-      <!-- Three columns of text below the carousel -->
+<!-- Three columns of text below the carousel -->
       <div class='row'>
         <div class='col-lg-4'>
           <div class="card">
@@ -27,7 +27,7 @@
               <a href="/dashboard" class="btn btn-primary">Dashboard</a>
             </div>
           </div>
-        </div><!-- /.col-lg-4 -->
+        </div>
 
         <div class='col-lg-4'>
           <div class="card">
@@ -39,7 +39,7 @@
               <a href="https://www.coinapi.io/" target="_blank" class="btn btn-primary">Visit CoinAPI</a>
             </div>
           </div>
-        </div><!-- /.col-lg-4 -->
+        </div>
 
         <div class='col-lg-4'>
           <div class="card">
@@ -51,9 +51,9 @@
               <a href="/faq" class="btn btn-primary">Visit FAQs</a>
             </div>
           </div>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-    </div><!-- /.container -->
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -62,43 +62,3 @@ export default {
   name: 'Home'
 }
 </script>
-
-<style scoped>
-.hooooome {
-  font-size: 100px;
-  text-align: center;
-}
-
-.home2 {
-  font-size: 60px;
-  text-align: center;
-}
-
-.carousel-inner {
-  background-color: darkgrey;
-}
-
-.carousel-caption {
-  position: relative;
-  left: unset;
-  right: unset;
-}
-
-.carousel-control-next, .carousel-control-prev {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: unset;
-  padding: 0 30px 0 30px;
-  color: #fff;
-  text-align: center;
-  background: 0 0;
-  border: 0;
-  opacity: .5;
-  transition: opacity .15s ease;
-}
-</style>

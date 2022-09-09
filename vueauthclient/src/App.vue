@@ -100,11 +100,10 @@ export default {
         })
     }
   },
+  // executed when page is loaded
   mounted() {
     this.isLoggedIn()
   }
 }
 </script>
 
-<style>
-</style>
