@@ -1,10 +1,4 @@
-<script>
-export default {
-  name: 'FAQ'
-}
-</script>
-
-
+<!-- FAQ  Page -->
 <template>
   <div>
     <h1 class='faq-headline'>FAQ - Frequently asked questions</h1>
@@ -147,6 +141,11 @@ export default {
   </div>
 </template>
 
+<script>
+export default {
+  name: 'FAQ'
+}
+</script>
 
 <style scoped>
 .accordion {
