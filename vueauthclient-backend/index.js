@@ -29,10 +29,12 @@ app.use(passport.session());
 let users = require("./users.json");
 const {response} = require("express");
 
+// catches frontend request to load Home
 app.get("/", (req, res, next) => {
     res.sendFile("index.html", {root: publicRoot})
 })
 
+// catches frontend request to login user
 app.post("/api/login", (req, res, next) => {
     //authentication of user, verifies who you are
     passport.authenticate('local', (err, user, info) => {
@@ -48,11 +50,15 @@ app.post("/api/login", (req, res, next) => {
     })(req, res, next)
 })
 
+// catches frontend request to logout user
 app.get('/api/logout', function (req, res, next) {
     req.logout();
     res.redirect("/login")
 });
 
+/**
+ * authMiddleware = you can only do this, if you are logged in
+ */
 const authMiddleware = (req, res, next) => {
     if (!req.isAuthenticated()) {
         res.status(401).send('You are not authenticated')
@@ -61,6 +67,7 @@ const authMiddleware = (req, res, next) => {
     }
 }
 
+// catches frontend request to request user data
 app.get("/api/user", authMiddleware, (req, res) => {
     let user = users.find((user) => {
         return user.userId === req.session.passport.user
@@ -70,24 +77,26 @@ app.get("/api/user", authMiddleware, (req, res) => {
 })
 
 
-/**
- * authMiddleware = you can only do this, if you are logged in
- */
+// catches frontend request to update user data
 app.put('/api/update-user/:id', authMiddleware, (req, res) => {
-    console.log(req.body.id)
+    // read user database file (users.json)
     fs.readFile('./users.json', 'utf8', (err, jsonString) => {
         if (err) {
             console.log("File read failed:", err)
             return
         }
+        //parses content into 'users'
         let users = JSON.parse(jsonString)
+        //searches user by id in 'users'
         let user = users.find((users => users.userId === req.body.id))
+        //rewrites user params (update)
         user.firstName = req.body.firstName
         user.lastName = req.body.lastName
         user.email = req.body.email
         user.password = req.body.password
-        // console.log('File data:', jsonString)
+        //reformat 'users' as string
         const userString = JSON.stringify(users)
+        //write 'users'(now as string) back into users.json
         fs.writeFile('./users.json', userString, err => {
             if (err) {
                 res.send('Error writing file')
@@ -98,30 +107,34 @@ app.put('/api/update-user/:id', authMiddleware, (req, res) => {
     })
 })
 
+// catches frontend request to delete current user data by id
 app.delete('/api/delete-user/:id', authMiddleware, (req, res) => {
-    console.log(req.params)
+    // read user database file (users.json)
     fs.readFile('./users.json', 'utf8', (err, jsonString) => {
         if (err) {
             console.log("File read failed:", err)
             return
         }
+        //parses content into 'users'
         let users = JSON.parse(jsonString)
-        console.log(users)
-        console.log(req.params.id)
-
-        const removeById = (arr, id) => {
-            const requiredIndex = arr.findIndex(el => {
+        /*
+        defines method, searches user by id in userList and removes them
+         */
+        const removeById = (userList, id) => {
+            const requiredIndex = userList.findIndex(el => {
                 return el.userId === String(id);
             });
             if (requiredIndex === -1) {
                 return false;
             }
-            return !!arr.splice(requiredIndex, 1);
+            //removes elements from array, starting at given index, removes amount of elements
+            return !!userList.splice(requiredIndex, 1);
         };
+        //calls method
         removeById(users, req.params.id);
-        console.log(users);
-
+        //reformat userList as string
         const userString = JSON.stringify(users)
+        //write userList(now as string, without deleted user) back into users.json
         fs.writeFile('./users.json', userString, err => {
             if (err) {
                 res.send('Error writing file')
@@ -132,11 +145,13 @@ app.delete('/api/delete-user/:id', authMiddleware, (req, res) => {
     })
 })
 
+// catches frontend request to convert currencies
 app.get("/api/convert", async (req, res,) => {
-    console.log(req.query)
     const token1 = '2DC86A86-5F6D-469A-B861-7F67F6CBF48D'
     const token2 = 'DFED3223-7BB6-4501-B1FB-62CB2D5DA8DD'
+    //building of API request URL
     const url = "https://rest.coinapi.io/v1/exchangerate/" + req.query.asset_id_base + "/" + req.query.asset_id_quote
+    //sends API req to coinapi.io, packs res into 'data'
     let data = await axios.get(url, {
         headers: {
             'X-CoinAPI-Key': token1
@@ -146,10 +161,12 @@ app.get("/api/convert", async (req, res,) => {
             console.error(error)
             res.send(error)
         })
+    //returns responded (from coinapi.io) data to frontend
     res.send(data.data)
-    console.log(data)
 })
 
+
+// catches frontend request to check, if a user is logged in
 app.get("/api/check-login", (req, res) => {
     if (req.user) {
         res.send(true)
@@ -158,6 +175,7 @@ app.get("/api/check-login", (req, res) => {
     }
 })
 
+//handles authentication process
 passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
@@ -175,10 +193,12 @@ passport.use(new LocalStrategy({
     }
 ))
 
+//serialization
 passport.serializeUser((user, done) => {
     done(null, user.userId)
 })
 
+//de-serialization
 passport.deserializeUser((id, done) => {
     let user = users.find((user) => {
         return user.userId === id
