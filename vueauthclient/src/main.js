@@ -5,6 +5,7 @@ import router from './router/pages'
 
 Vue.config.productionTip = false
 
+//create new Vue site
 new Vue({
   el: '#app',
   router,

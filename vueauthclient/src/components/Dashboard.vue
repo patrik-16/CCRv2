@@ -1,3 +1,4 @@
+<!-- Dashboard Page -->
 <template>
   <div class='container'>
     <div class='row'>
